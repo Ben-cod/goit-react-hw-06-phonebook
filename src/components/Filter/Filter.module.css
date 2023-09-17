@@ -1,0 +1,11 @@
+.filterWrap{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    
+}
+.filter{
+    background-color: aquamarine;
+    padding: 10px;
+    border-radius: 5px;
+}
