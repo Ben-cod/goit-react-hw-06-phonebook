@@ -16,7 +16,7 @@ export const ContactList = () => {
       {findContacts.map(({ id, phone, name }) => {
         return (
           <li className={css.item} key={id}>
-            {name}: {phone}
+            ☎️{name}: {phone}
             <button
               className={css.button}
               type="button"
