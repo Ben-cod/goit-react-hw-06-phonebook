@@ -61,7 +61,7 @@ export const ContactForm = () => {
         onSubmit={handleSubmit}
       >
         <Form className={css.form}>
-          <div>
+          <div className={css.form_wrap}>
             <label className={css.label} htmlFor="name">
               Name
             </label>

@@ -15,18 +15,44 @@ export const ContactList = () => {
     <ul>
       {findContacts.map(({ id, phone, name }) => {
         return (
-          <li className={css.item} key={id}>
-            {name}: {phone}☎️
-            <button
-              className={css.button}
-              type="button"
-              onClick={() => dispatch(removeContact(id))}
-            >
-              ❌
-            </button>
+          <li key={id}>
+            <div className={css.contact_card}>
+              <div className={css.contact_details}>
+                <p className={css.contact_name}>{name}</p>
+                <p className={css.contact_phone}>☎️ {phone}</p>
+              </div>
+              <button
+                className={css.contact_button}
+                type="button"
+                onClick={() => dispatch(removeContact(id))}
+              >
+                ❌ Remove
+              </button>
+            </div>
           </li>
         );
       })}
     </ul>
   );
+
+  //   return (
+  //     <ul>
+  //       {findContacts.map(({ id, phone, name }) => {
+  //         return (
+  //           <li className={css.item} key={id}>
+  //             <p className={css.text}>
+  //               {name}: ☎️{phone}
+  //             </p>
+  //             <button
+  //               className={css.button}
+  //               type="button"
+  //               onClick={() => dispatch(removeContact(id))}
+  //             >
+  //               ❌
+  //             </button>
+  //           </li>
+  //         );
+  //       })}
+  //     </ul>
+  //   );
 };

@@ -1,23 +1,29 @@
-.form{
-   
+.form {
   background-color: aquamarine;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 20px;
-   
-   
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
 }
-.field{
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: aqua;
+.field {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: aqua;
 }
-.label{
-    margin-right: 10px;
+.label {
+  margin-right: 10px;
 }
-.button{
-    padding: 5px;
-    border-radius: 5px;
-   background-color: blanchedalmond;
+.button {
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  color: red;
+  background-color: aqua;
+}
+.form_wrap {
 }
