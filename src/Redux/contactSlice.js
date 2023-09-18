@@ -17,25 +17,30 @@ export const contactSlice = createSlice({
     addContact(state, action) {
       state.items.push(action.payload);
     },
+
     removeContact(state, action) {
       state.items = state.items.filter(
         contact => contact.id !== action.payload
       );
     },
+
     setStatusFilter(state, action) {
       state.filter = action.payload;
     },
   },
 });
+
 const persistConfig = {
   key: 'root',
   storage,
   blacklist: ['filter'],
 };
+
 export const persistContactReducer = persistReducer(
   persistConfig,
   contactSlice.reducer
 );
+
 export const { addContact, removeContact, setStatusFilter } =
   contactSlice.actions;
 

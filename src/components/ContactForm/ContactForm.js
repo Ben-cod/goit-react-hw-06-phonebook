@@ -1,11 +1,13 @@
 import css from './ContactForm.module.css';
-
 import { nanoid } from 'nanoid';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact, getContacts } from 'Redux/contactSlice';
-import { useState } from 'react';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,29 +29,12 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'phone':
-        setPhone(value);
-        break;
-      default:
-        break;
-    }
-  };
+  const handleSubmit = (values, { resetForm }) => {
+    const { name, phone } = values;
 
-  const handleSubmit = e => {
-    console.log('handleSubmit');
-    e.preventDefault();
     const newContact = {
       id: nanoid(),
       name,
@@ -61,11 +46,11 @@ export const ContactForm = () => {
         contact.phone === phone
     );
     if (isContactExists) {
-      alert("Контакт з таким ім'ям або номером телефону вже існує.");
+      toast.warning('Контакт з таким імям або номером телефону вже існує.');
     } else {
+      toast.success('Операція завершилася успішно');
       dispatch(addContact(newContact));
-      setName('');
-      setPhone('');
+      resetForm();
     }
   };
   return (
@@ -84,8 +69,6 @@ export const ContactForm = () => {
               className={css.field}
               type="text"
               id="name"
-              value={name}
-              onChange={handleChange}
               name="name"
               placeholder="Rosie Simpson"
             />
@@ -99,9 +82,7 @@ export const ContactForm = () => {
               className={css.field}
               type="text"
               id="phone"
-              value={phone}
               name="phone"
-              onChange={handleChange}
               placeholder="459-12-56"
             />
             <ErrorMessage name="phone" component="div" />
@@ -111,6 +92,7 @@ export const ContactForm = () => {
           </button>
         </Form>
       </Formik>
+      <ToastContainer />
     </div>
   );
 };
